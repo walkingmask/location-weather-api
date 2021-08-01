@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-local
+    image: lwapi.localhost:latest
+    container_name: lwapi.localhost
+    environment:
+      VIRTUAL_HOST: lwapi.localhost
+      VIRTUAL_PORT: 8080
+    expose:
+      - 8080
+    ports:
+      - 49133:8080
+    volumes:
+      - .:/workspace
+    working_dir: /workspace/app
+    init: true
+    command: uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+
+networks:
+  default:
+    external:
+      name: nginx-proxy-shared

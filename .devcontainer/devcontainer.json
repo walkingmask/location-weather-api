@@ -1,0 +1,14 @@
+{
+	"name": "Location Weather API Local Developement Container",
+	"dockerComposeFile": "../docker-compose.local.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"settings": {
+		"terminal.integrated.automationShell.linux": "/bin/bash",
+		"python.pythonPath": "/usr/local/bin/python"
+	},
+	"extensions": [
+		"ms-python.python",
+		"ms-python.vscode-pylance"
+	]
+}
