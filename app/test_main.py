@@ -19,7 +19,9 @@ from main import LocationRainfall
 from main import LocationRainfallResponse
 from main import LocationWeatherForecastResponse
 from main import LocationWeatherForecast
+from main import RainfallEnum
 from main import TilePosition
+from main import WeatherEnum
 from main import app
 
 EXAMPLE_IMAGES_DIR = HERE / "example_images"
@@ -288,6 +290,19 @@ class TestLocationRainfall(TestCase):
         self.assertEqual(result["rainfall"], 0)
 
 
+class TestWeatherEnum(TestCase):
+
+    def test___init__(self):
+        weather = WeatherEnum("sunny")
+        self.assertEqual(weather.value, "sunny")
+
+        with self.assertRaises(ValueError):
+            weather = WeatherEnum("NOT_DEFINED")
+
+        with self.assertRaises(ValueError):
+            weather = WeatherEnum(0)
+
+
 class TestLocationWeatherForecastResponse(TestCase):
 
     def test___init__(self):
@@ -311,6 +326,19 @@ class TestLocationWeatherForecastResponse(TestCase):
         self.assertEqual(response.observation_timestamp, "20210731200000")
         self.assertEqual(response.forecast_timestamp, "20210801030000")
         self.assertEqual(response.image_url, "https://www.jma.go.jp/bosai/jmatile/data/wdist/20210731200000/none/20210801030000/surf/wm/5/27/13.png")
+
+
+class TestRainfallEnum(TestCase):
+
+    def test___init__(self):
+        rainfall = RainfallEnum(0)
+        self.assertEqual(rainfall.value, 0)
+
+        with self.assertRaises(ValueError):
+            rainfall = RainfallEnum(3)
+
+        with self.assertRaises(ValueError):
+            rainfall = RainfallEnum("10")
 
 
 class TestLocationRainfallResponse(TestCase):
