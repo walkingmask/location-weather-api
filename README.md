@@ -23,6 +23,93 @@ docker-compose up -d
 ```
 
 
+## Examples
+
+### Location Weather Forecast
+
+Request
+
+```
+$ curl -X 'POST' \
+  'http://localhost:49133/location_weather_forecast' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{"lat": 26.206998, "lon": 127.65174}'
+```
+
+Response
+
+```
+{
+  "weather": "cloudy",
+  "location": {
+    "lat": 26.206998,
+    "lon": 127.65174
+  },
+  "tile_position": {
+    "location": {
+      "lat": 26.206998,
+      "lon": 127.65174
+    },
+    "zoom": 5,
+    "x": 27.346821333333335,
+    "y": 13.584736664484332,
+    "tile_x": 27,
+    "tile_y": 13,
+    "pixel_x": 88,
+    "pixel_y": 149
+  },
+  "now": "2021/08/02 09:50:45",
+  "utc": "2021/08/02 00:50:45",
+  "observation_timestamp": "20210801200000",
+  "forecast_timestamp": "20210802000000",
+  "image_url": "https://www.jma.go.jp/bosai/jmatile/data/wdist/20210801200000/none/20210802000000/surf/wm/5/27/13.png"
+}
+```
+
+### Location Rainfall
+
+Request
+
+```
+$ curl -X 'POST' \
+  'http://localhost:49133/location_rainfall' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{"lat": 33.903307, "lon": 130.933741}'
+```
+
+Response
+
+```
+{
+  "rainfall": 0,
+  "location": {
+    "lat": 33.903307,
+    "lon": 130.933741
+  },
+  "tile_position": {
+    "location": {
+      "lat": 33.903307,
+      "lon": 130.933741
+    },
+    "zoom": 9,
+    "x": 442.2168760888889,
+    "y": 204.6936493340127,
+    "tile_x": 442,
+    "tile_y": 204,
+    "pixel_x": 55,
+    "pixel_y": 177
+  },
+  "now": "2021/08/02 09:51:12",
+  "utc": "2021/08/02 00:51:12",
+  "observation_timestamp": "20210802005000",
+  "forecast_timestamp": "20210802005000",
+  "image_url": "https://www.jma.go.jp/bosai/jmatile/data/nowc/20210802005000/none/20210802005000/surf/hrpns/9/442/204.png"
+}
+```
+
+
 ## Unit Test
 
 After starting the server.
