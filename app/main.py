@@ -1,3 +1,4 @@
+from enum import Enum
 import datetime
 from datetime import timedelta
 from datetime import timezone
@@ -362,11 +363,23 @@ location_weather = LocationWeatherForecast()
 location_rainfall = LocationRainfall()
 
 
+class WeatherEnum(str, Enum):
+    """
+    地点天気予報レスポンスに含む天気種別の定義
+    """
+    unkown = "unkown"
+    sunny = "sunny"
+    cloudy = "cloudy"
+    rainy = "rainy"
+    sleet = "sleet"
+    snow = "snow"
+
+
 class LocationWeatherForecastResponse(BaseModel):
     """
     地点天気予報レスポンス定義
     """
-    weather: str
+    weather: WeatherEnum
     location: Location
     tile_position: TilePosition
     now: str
@@ -387,11 +400,26 @@ async def get_location_weather_forecast(location: Location):
     return location_weather.get_location_weather_forecast(location)
 
 
+class RainfallEnum(int, Enum):
+    """
+    地点降雨量レスポンスに含む降水量の定義
+    """
+    zero = 0
+    one = 1
+    five = 5
+    ten = 10
+    twenty = 20
+    thirty = 30
+    fifty = 50
+    eighty = 80
+    hundred = 100
+
+
 class LocationRainfallResponse(BaseModel):
     """
     地点降雨量レスポンス定義
     """
-    rainfall: int
+    rainfall: RainfallEnum
     location: Location
     tile_position: TilePosition
     now: str
