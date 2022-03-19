@@ -6,11 +6,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: lwapi.walkingmask.tk:latest
-    container_name: lwapi.walkingmask.tk
+    image: lwapi:latest
+    container_name: lwapi
     restart: always
     environment:
-      VIRTUAL_HOST: lwapi.walkingmask.tk
+      VIRTUAL_HOST: lwapi.walkingmask.dev
       VIRTUAL_PORT: 8080
     expose:
       - 8080
